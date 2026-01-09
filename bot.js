@@ -4,14 +4,14 @@ function startBot() {
   const bot = mineflayer.createBot({
     host: 'Teibaceaft123.aternos.me',
     port: 60036,
-    username: '2bv4t',
-    auth: 'offline'
+    username: 'AFK_Bot',
+    auth: 'offline',
+    version: false // يخلي mineflayer يختار الإصدار تلقائي
   });
 
   bot.on('spawn', () => {
     console.log('✅ Bot is online (AFK)');
 
-    // حركة خفيفة عشان ما ينفصل
     setInterval(() => {
       bot.setControlState('jump', true);
       setTimeout(() => {
@@ -26,7 +26,7 @@ function startBot() {
   });
 
   bot.on('error', err => {
-    console.log('⚠️ Error:', err);
+    console.log('⚠️ Error:', err.message);
   });
 }
 
