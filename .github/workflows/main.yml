@@ -1,26 +1,26 @@
-name: Minecraft AFK Bot
+name: MC AFK Bot
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */5 * * *"
+  push:
+    branches:
+      - main
 
 jobs:
-  bot:
+  run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: npm install
 
-      - name: Start bot
+      - name: ▶️ Run bot
         run: node bot.js
