@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: ▶️ Run bot
+      - name: Run bot
         run: node bot.js
