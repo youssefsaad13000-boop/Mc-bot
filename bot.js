@@ -9,9 +9,8 @@ function startBot() {
   });
 
   bot.on('spawn', () => {
-    console.log('✅ Bot is online (AFK)');
+    console.log('Bot is online (AFK)');
 
-    // حركة خفيفة عشان ما ينفصل
     setInterval(() => {
       bot.setControlState('jump', true);
       setTimeout(() => {
@@ -21,4 +20,13 @@ function startBot() {
   });
 
   bot.on('end', () => {
-    console.log('❌
+    console.log('Disconnected... reconnecting in 5s');
+    setTimeout(startBot, 5000);
+  });
+
+  bot.on('error', err => {
+    console.log('Error:', err.message);
+  });
+}
+
+startBot();
