@@ -1,11 +1,10 @@
-// bot.js
 const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'Teibaceaft123.aternos.me',
     port: 60036,
-    username: '2bv4t',
+    username: 'sssssss',
     auth: 'offline'
   });
 
@@ -32,4 +31,3 @@ function startBot() {
 }
 
 startBot();
- 
