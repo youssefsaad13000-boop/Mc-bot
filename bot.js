@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'Teibaceaft123.aternos.me',
-    port: 60036,
+    host: 'yyycraft.falixsrv.me',
+    port: 39687,
     username: '24bb7',
     auth: 'offline'
   });
@@ -21,7 +21,7 @@ function startBot() {
 
   bot.on('end', () => {
     console.log('Disconnected... reconnecting in 5s');
-    setTimeout(startBot, 5000);
+    setTimeout(startBot, 500);
   });
 
   bot.on('error', err => {
