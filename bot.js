@@ -4,7 +4,7 @@ function startBot() {
   const bot = mineflayer.createBot({
     host: 'yyycraft.falixsrv.me',
     port: 39687,
-    username: 'ShadowCrafter9',
+    username: 'ShadowCrafter900',
     auth: 'offline'
   });
 
