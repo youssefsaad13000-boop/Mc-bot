@@ -5,7 +5,7 @@ function startBot() {
     host: 'yyycraft.falixsrv.me',
     port: 39687,
     username: 'ShadowCrafter900',
-    auth: 'microsoft'
+    auth: 'offline'
   });
 
   let jumpInterval;
