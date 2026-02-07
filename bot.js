@@ -4,52 +4,28 @@ function startBot() {
   const bot = mineflayer.createBot({
     host: 'yyycraft.falixsrv.me',
     port: 39687,
-    username: 'Shadow', // اسم مختلف عن حسابك الأساسي
-    auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.21.11'         // حدّد نسخة السيرفر لو محتاج
+    username: 'ShadowCrafter',
+    auth: 'offline'
   });
 
   bot.on('spawn', () => {
-    console.log('البوت متصل (AFK)');
+    console.log('Bot is online (AFK)');
 
-    // حلقة حركات AFK متنوعة
     setInterval(() => {
-      // دوران عشوائي
-      bot.look(Math.random() * 360, 0);
-
-      // قفز + انحناء قصير
       bot.setControlState('jump', true);
-      bot.setControlState('sneak', true);
-
       setTimeout(() => {
         bot.setControlState('jump', false);
-        bot.setControlState('sneak', false);
       }, 500);
-    }, 30000); // كل 30 ثانية
+    }, 60000);
   });
 
-  // تجاهل رسائل الشات
-  bot.on('message', (message) => {
-    // لا تفعل شيء
-  });
-
-  // إعادة الاتصال عند الانفصال
   bot.on('end', () => {
-    console.log('تم فصل البوت... إعادة الاتصال بعد 5 ثواني');
+    console.log('Disconnected... reconnecting in 5s');
     setTimeout(startBot, 5000);
   });
 
-  // إعادة الاتصال عند حدوث خطأ
   bot.on('error', err => {
-    console.log('خطأ:', err.message);
-    setTimeout(startBot, 5000);
-  });
-
-  // إيقاف نظيف عند إغلاق البرنامج
-  process.on('SIGINT', () => {
-    console.log('إيقاف البوت...');
-    bot.quit();
-    process.exit();
+    console.log('Error:', err.message);
   });
 }
 
