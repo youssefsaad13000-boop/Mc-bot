@@ -6,7 +6,7 @@ function startBot() {
     port: 39687,
     username: 'Shadow', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.20.1'         // حدّد نسخة السيرفر لو محتاج
+    version: '1.21.11'         // حدّد نسخة السيرفر لو محتاج
   });
 
   bot.on('spawn', () => {
