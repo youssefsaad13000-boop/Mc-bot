@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'teibacraft.playserver.pro',
-    port: 39687,
+    port: 19132,
     username: 'Shay', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.20.1'         // حدّد نسخة السيرفر لو محتاج
