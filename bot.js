@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'play.ashpvp.xyz',
-    username: 'youcant_ihos', // اسم مختلف عن حسابك الأساسي
+    username: 'ihossam_noob', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.20.1'         // حدّد نسخة السيرفر لو محتاج
   });
