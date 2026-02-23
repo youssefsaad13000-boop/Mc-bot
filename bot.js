@@ -2,31 +2,24 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'play.ashpvp.xyz',
-    username: 'kanmaklb:)', // اسم مختلف عن حسابك الأساسي
+    host: 'yyycraft.mcsh.io',
+    username: 'Shay', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.20.1'         // حدّد نسخة السيرفر لو محتاج
+    version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
 
   bot.on('spawn', () => {
     console.log('البوت متصل (AFK)');
 
-    // حلقة حركات AFK متنوعة
-    setInterval(() => {
-      bot.look(Math.random() * 360, 0);
+    // تسجيل الحساب أوّل ما يدخل
+    bot.chat('/register 123yyyuuu 123yyyuuu');
 
-      bot.setControlState('jump', true);
-      bot.setControlState('sneak', true);
-
-      setTimeout(() => {
-        bot.setControlState('jump', false);
-        bot.setControlState('sneak', false);
-      }, 500);
-    }, 30000);
+    // يمشي للأمام باستمرار
+    bot.setControlState('forward', true);
   });
 
   bot.on('message', (message) => {
-    // تجاهل رسائل الشات
+    console.log('شات:', message.toAnsi());
   });
 
   bot.on('end', () => {
