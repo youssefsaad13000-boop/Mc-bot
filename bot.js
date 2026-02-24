@@ -14,6 +14,9 @@ bot.loadPlugin(pvp);
 
 bot.once('spawn', () => {
   console.log('✅ البوت دخل السيرفر وجاهز للـ PVP');
+  
+  // تسجيل الدخول التلقائي
+  bot.chat('/login 123yyyuuu');
 });
 
 // مثال: البوت يهاجم أي لاعب قريب
