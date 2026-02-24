@@ -1,25 +1,66 @@
 const mineflayer = require('mineflayer');
+const { pathfinder, Movements } = require('mineflayer-pathfinder');
+const { goals } = require('mineflayer-pathfinder');
+const pvp = require('mineflayer-pvp').plugin;
+const autoeat = require('mineflayer-auto-eat').plugin;
 
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'play.ashpvp.xyz',
-    username: 'wwe', // اسم مختلف عن حسابك الأساسي
-    auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
+    username: 'wwe',
+    auth: 'offline',
+    version: '1.20.1'
   });
+
+  bot.loadPlugin(pathfinder);
+  bot.loadPlugin(pvp);
+  bot.loadPlugin(autoeat);
 
   bot.on('spawn', () => {
-    console.log('البوت متصل (AFK)');
+    console.log('البوت دخل السيرفر');
 
-    // تسجيل الحساب أوّل ما يدخل
+    // تسجيل الدخول
     bot.chat('/login 123yyyuuu');
 
-    // يمشي للأمام باستمرار
-    bot.setControlState('forward', true);
+    // إعداد الحركة الطبيعية
+    const mcData = require('minecraft-data')(bot.version);
+    const defaultMove = new Movements(bot, mcData);
+    bot.pathfinder.setMovements(defaultMove);
+
+    // مثال: يمشي لمكان عشوائي
+    const randomGoal = new goals.GoalXZ(
+      bot.entity.position.x + Math.floor(Math.random() * 10),
+      bot.entity.position.z + Math.floor(Math.random() * 10)
+    );
+    bot.pathfinder.setGoal(randomGoal, false);
   });
 
-  bot.on('message', (message) => {
-    console.log('شات:', message.toAnsi());
+  // أوامر من الشات للتحكم في البوت
+  bot.on('chat', (username, message) => {
+    if (username === bot.username) return;
+
+    if (message === 'attack') {
+      const target = bot.nearestEntity(e => e.type === 'player' && e.username !== bot.username);
+      if (target) {
+        bot.pvp.attack(target);
+        bot.chat('هجمت على ' + target.username);
+      } else {
+        bot.chat('مافيش لاعب قريب');
+      }
+    }
+
+    if (message === 'stop') {
+      bot.pvp.stop();
+      bot.chat('وقفت القتال');
+    }
+  });
+
+  bot.on('autoeat_started', () => {
+    console.log('البوت بدأ ياكل تلقائيًا');
+  });
+
+  bot.on('autoeat_finished', () => {
+    console.log('البوت خلص أكل');
   });
 
   bot.on('end', () => {
@@ -30,12 +71,6 @@ function startBot() {
   bot.on('error', err => {
     console.log('خطأ:', err.message);
     setTimeout(startBot, 5000);
-  });
-
-  process.on('SIGINT', () => {
-    console.log('إيقاف البوت...');
-    bot.quit();
-    process.exit();
   });
 }
 
