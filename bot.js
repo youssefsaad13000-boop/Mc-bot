@@ -1,5 +1,11 @@
 const mineflayer = require('mineflayer');
-const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
+const pvp = require('mineflayer-pvp').plugin;
+const { Configuration, OpenAIApi } = require('openai');
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY // ضع مفتاحك هنا
+});
+const openai = new OpenAIApi(configuration);
 
 function startBot() {
   const bot = mineflayer.createBot({
@@ -9,33 +15,43 @@ function startBot() {
     version: '1.20.1'
   });
 
-  bot.loadPlugin(pathfinder);
+  bot.loadPlugin(pvp);
 
   bot.once('spawn', () => {
-    console.log('البوت متصل (AI)');
+    console.log('البوت متصل (PvP AI)');
     setTimeout(() => bot.chat('/login 123yyyuuu'), 2000);
-
-    const mcData = require('minecraft-data')(bot.version);
-    const defaultMove = new Movements(bot, mcData);
-    bot.pathfinder.setMovements(defaultMove);
   });
 
-  bot.on('chat', (username, message) => {
+  bot.on('chat', async (username, message) => {
     if (username === bot.username) return;
 
-    if (message.includes('اتبعني')) {
+    if (message.includes('قاتلني')) {
       const player = bot.players[username]?.entity;
-      if (!player) {
-        bot.chat('مش شايفك!');
-        return;
-      }
-      bot.chat(`تمام ${username}, جاي وراك!`);
-      bot.pathfinder.setGoal(new goals.GoalFollow(player, 2), true);
-    }
+      if (!player) return bot.chat('مش شايفك!');
 
-    if (message.includes('قف')) {
-      bot.chat('هقف هنا.');
-      bot.pathfinder.stop();
+      // وصف الحالة
+      const situation = `Player ${username} طلب قتال. المسافة: ${player.position.distanceTo(bot.entity.position)}.`;
+
+      // استشارة OpenAI
+      const response = await openai.createChatCompletion({
+        model: "gpt-4",
+        messages: [
+          { role: "system", content: "أنت مساعد للقتال في Minecraft." },
+          { role: "user", content: situation }
+        ]
+      });
+
+      const decision = response.data.choices[0].message.content;
+
+      bot.chat(`قرار الذكاء الاصطناعي: ${decision}`);
+
+      // تنفيذ القرار
+      if (decision.includes('هاجم')) {
+        bot.pvp.attack(player);
+      } else if (decision.includes('اهرب')) {
+        bot.chat('هحاول أهرب...');
+        // ممكن تضيف pathfinder هنا للهروب
+      }
     }
   });
 }
