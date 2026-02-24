@@ -8,14 +8,31 @@ function startBot() {
     version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
 
-  bot.on('spawn', () => {
-    console.log('البوت متصل (AFK)');
+  bot.once('spawn', () => {
+    console.log('البوت متصل (AI)');
 
-    // تسجيل الحساب أوّل ما يدخل
-    bot.chat('/login 123yyyuuu');
+    // تسجيل الدخول بعد ثانيتين
+    setTimeout(() => bot.chat('/login 123yyyuuu'), 2000);
 
-    // يمشي للأمام باستمرار
-    bot.setControlState('forward', true);
+    // حركة عشوائية كل فترة
+    setInterval(() => {
+      const actions = ['jump', 'sneak', 'left', 'right'];
+      const action = actions[Math.floor(Math.random() * actions.length)];
+
+      bot.setControlState(action, true);
+      setTimeout(() => bot.setControlState(action, false), 500);
+    }, 10000); // كل 10 ثواني
+  });
+
+  // ردود بسيطة على الشات
+  bot.on('chat', (username, message) => {
+    if (username === bot.username) return; // تجاهل نفسه
+
+    if (message.includes('مرحبا')) {
+      bot.chat(`أهلاً ${username}!`);
+    } else if (message.includes('كيفك')) {
+      bot.chat('تمام الحمد لله، وانت؟');
+    }
   });
 
   bot.on('message', (message) => {
