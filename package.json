@@ -9,6 +9,6 @@
   "dependencies": {
     "mineflayer": "^4.20.0",
     "mineflayer-pathfinder": "^2.4.0",
-    "mineflayer-pvp": "^1.4.0"
+    "mineflayer-pvp": "^1.3.0"
   }
 }
