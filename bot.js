@@ -4,7 +4,7 @@ const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'play.ashpvp.xyz',
-    username: 'wwe',
+    username: 'wwwe',
     auth: 'offline',
     version: '1.20.1'
   });
