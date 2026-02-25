@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'play.ashpvp.xyz',
-    username: 'MAFIA10H', // اسم مختلف عن حسابك الأساسي
+    username: 'a3mlk shay', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
@@ -12,7 +12,7 @@ function startBot() {
     console.log('البوت متصل (AFK)');
 
     // تسجيل الحساب أوّل ما يدخل
-    bot.chat('Fuck');
+    bot.chat('/reg 123yyyuuu 123yyyuuu');
 
     // يمشي للأمام باستمرار
     bot.setControlState('forward', true);
