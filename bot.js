@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'play.ashpvp.xyz',
-    username: 'gggyyy', // اسم مختلف عن حسابك الأساسي
+    host: 'yyyycraft.falixsrv.ne',
+    username: 'shay', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
