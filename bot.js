@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'Drainland.aternos.me',
-    username: 'anabot', // اسم مختلف عن حسابك الأساسي
+    username: 'shay', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.21.11'         // أو false لو عايز يتعرف تلقائيًا
   });
