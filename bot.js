@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'Drainland.aternos.me',
-    username: 'shay', // اسم مختلف عن حسابك الأساسي
+    host: 'mc.ashpvp.xyz',
+    username: 'mmmoo', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.21.11'         // أو false لو عايز يتعرف تلقائيًا
   });
@@ -12,7 +12,7 @@ function startBot() {
     console.log('البوت متصل (AFK)');
 
     // تسجيل الحساب أوّل ما يدخل
-    bot.chat('Hi');
+    bot.chat('/register 123456789 12345678');
 
     // يمشي للأمام باستمرار
     bot.setControlState('forward', true);
