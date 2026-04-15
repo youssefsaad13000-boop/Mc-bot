@@ -3,37 +3,42 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'mc.ashpvp.xyz',
-    username: 'mmmoo', // اسم مختلف عن حسابك الأساسي
-    auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
+    username: 'mmmoo',       // اسم مختلف عن حسابك الأساسي
+    auth: 'offline',         // للسيرفرات الـ cracked
+    version: '1.20.1'        // أو false لو عايز يتعرف تلقائيًا
   });
 
   bot.on('spawn', () => {
-    console.log('البوت متصل (AFK)');
+    console.log('✅ البوت متصل (AFK)');
 
-    // تسجيل الحساب أوّل ما يدخل
-    bot.chat('/login 123456789yyyuuu');
+    // تسجيل الحساب أو تسجيل الدخول حسب الحاجة
+    bot.chat('/register 123456789yyyuuu 123456789yyyuuu');
+    // لو الحساب متسجل قبل كده استخدم:
+    // bot.chat('/login 123456789yyyuuu');
 
-    // يمشي للأمام باستمرار
-    bot.setControlState('forward', true);
+    // انتظر ثانيتين قبل الحركة علشان العالم يجهز
+    setTimeout(() => {
+      bot.setControlState('forward', true);
+      console.log('🚶 البوت بدأ يمشي للأمام باستمرار');
+    }, 2000);
   });
 
   bot.on('message', (message) => {
-    console.log('شات:', message.toAnsi());
+    console.log('💬 شات:', message.toAnsi());
   });
 
   bot.on('end', () => {
-    console.log('تم فصل البوت... إعادة الاتصال بعد 5 ثواني');
+    console.log('❌ تم فصل البوت... إعادة الاتصال بعد 5 ثواني');
     setTimeout(startBot, 5000);
   });
 
   bot.on('error', err => {
-    console.log('خطأ:', err.message);
+    console.log('⚠️ خطأ:', err.message);
     setTimeout(startBot, 5000);
   });
 
   process.on('SIGINT', () => {
-    console.log('إيقاف البوت...');
+    console.log('⏹️ إيقاف البوت...');
     bot.quit();
     process.exit();
   });
