@@ -5,7 +5,7 @@ function startBot() {
     host: 'mc.ashpvp.xyz',
     username: 'mmmoo', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
-    version: '1.21.11'         // أو false لو عايز يتعرف تلقائيًا
+    version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
 
   bot.on('spawn', () => {
