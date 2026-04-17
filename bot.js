@@ -1,47 +1,43 @@
 const mineflayer = require('mineflayer');
 
+let botCount = 0;
+
 function startBot() {
+  botCount++;
+  const username = `bot${botCount}`; // اسم مختلف لكل بوت
+
   const bot = mineflayer.createBot({
-    host: 'mc.ashpvp.xyz',
-    username: 'mmmoo',       // اسم مختلف عن حسابك الأساسي
-    auth: 'offline',         // للسيرفرات الـ cracked
-    version: '1.20.1'        // أو false لو عايز يتعرف تلقائيًا
+    host: 'roniedition.aternos.me', // السيرفر الجديد
+    username: username,
+    auth: 'offline',                // للسيرفرات الـ cracked
+    version: '1.20.1'               // أو false لو عايز يتعرف تلقائيًا
   });
 
   bot.on('spawn', () => {
-    console.log('✅ البوت متصل (AFK)');
+    console.log(`✅ البوت ${username} متصل`);
 
-    // تسجيل الحساب أو تسجيل الدخول حسب الحاجة
+    // تسجيل أو تسجيل دخول
     bot.chat('/register 123456789yyyuuu 123456789yyyuuu');
-    // لو الحساب متسجل قبل كده استخدم:
+    // أو لو الحساب متسجل قبل كده:
     // bot.chat('/login 123456789yyyuuu');
 
-    // انتظر ثانيتين قبل الحركة علشان العالم يجهز
+    // حركة مستمرة للأمام
     setTimeout(() => {
       bot.setControlState('forward', true);
-      console.log('🚶 البوت بدأ يمشي للأمام باستمرار');
+      console.log(`🚶 البوت ${username} بدأ يمشي للأمام`);
     }, 2000);
   });
 
-  bot.on('message', (message) => {
-    console.log('💬 شات:', message.toAnsi());
-  });
-
   bot.on('end', () => {
-    console.log('❌ تم فصل البوت... إعادة الاتصال بعد 5 ثواني');
-    setTimeout(startBot, 5000);
+    console.log(`❌ البوت ${username} فصل... إعادة الاتصال بعد 5 ثواني`);
+    setTimeout(() => startBot(), 5000);
   });
 
   bot.on('error', err => {
-    console.log('⚠️ خطأ:', err.message);
-    setTimeout(startBot, 5000);
-  });
-
-  process.on('SIGINT', () => {
-    console.log('⏹️ إيقاف البوت...');
-    bot.quit();
-    process.exit();
+    console.log(`⚠️ خطأ في ${username}:`, err.message);
+    setTimeout(() => startBot(), 5000);
   });
 }
 
-startBot();
+// كل 5 ثواني يتولد بوت جديد
+setInterval(startBot, 5000);
