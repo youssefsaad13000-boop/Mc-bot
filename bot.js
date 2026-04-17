@@ -4,10 +4,10 @@ let botCount = 0;
 
 function startBot() {
   botCount++;
-  const username = `bot${botCount}`; // اسم مختلف لكل بوت
+  const username = `ommm${botCount}`; // اسم مختلف لكل بوت
 
   const bot = mineflayer.createBot({
-    host: 'roniedition.aternos.me', // السيرفر الجديد
+    host: 'roniedition.aternos.me', // السيرفر
     username: username,
     auth: 'offline',                // للسيرفرات الـ cracked
     version: '1.20.1'               // أو false لو عايز يتعرف تلقائيًا
@@ -15,11 +15,6 @@ function startBot() {
 
   bot.on('spawn', () => {
     console.log(`✅ البوت ${username} متصل`);
-
-    // تسجيل أو تسجيل دخول
-    bot.chat('/register 123456789yyyuuu 123456789yyyuuu');
-    // أو لو الحساب متسجل قبل كده:
-    // bot.chat('/login 123456789yyyuuu');
 
     // حركة مستمرة للأمام
     setTimeout(() => {
