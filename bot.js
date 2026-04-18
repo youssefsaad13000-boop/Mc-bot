@@ -7,7 +7,7 @@ function startBot() {
   const username = `ommm${botCount}`; // اسم مختلف لكل بوت
 
   const bot = mineflayer.createBot({
-    host: 'roniedition.aternos.me', // السيرفر
+    host: '51.38.155.225:25329', // السيرفر
     username: username,
     auth: 'offline',                // للسيرفرات الـ cracked
     version: '1.20.1'               // أو false لو عايز يتعرف تلقائيًا
