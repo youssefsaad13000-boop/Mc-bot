@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'pvptrainlol.falixsrv.me',
-    username: 'mmmoo', // اسم مختلف عن حسابك الأساسي
+    username: 'higg', // اسم مختلف عن حسابك الأساسي
     auth: 'offline',          // للسيرفرات الـ cracked
     version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
@@ -12,7 +12,7 @@ function startBot() {
     console.log('البوت متصل (AFK)');
 
     // تسجيل الحساب أوّل ما يدخل
-    bot.chat('/register 123456789yyyuuu 123456789yyyuuu');
+    bot.chat('');
 
     // يمشي للأمام باستمرار
     bot.setControlState('forward', true);
