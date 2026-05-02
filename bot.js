@@ -1,35 +1,42 @@
 const mineflayer = require('mineflayer');
 
-let botCount = 1;
-
 function startBot() {
-  botCount++;
-  const username = `ommm${botCount}`; // اسم مختلف لكل بوت
-
   const bot = mineflayer.createBot({
-    host: 'pvptrainlol.falixsrv.me', // السيرفر
-    username: username,
-    auth: 'offline',                // للسيرفرات الـ cracked
-    version: '1.20.1'               // أو false لو عايز يتعرف تلقائيًا
+    host: 'pvptrainlol.falixsrv.me',
+    username: 'mmmoo', // اسم مختلف عن حسابك الأساسي
+    auth: 'offline',          // للسيرفرات الـ cracked
+    version: '1.20.1'         // أو false لو عايز يتعرف تلقائيًا
   });
 
   bot.on('spawn', () => {
-    console.log(`✅ البوت ${username} متصل`);
+    console.log('البوت متصل (AFK)');
 
-    // حركة مستمرة للأمام
-    setTimeout(() => {
-      bot.setControlState('forward', true);
-      console.log(`🚶 البوت ${username} بدأ يمشي للأمام`);
-    }, 2000);
+    // تسجيل الحساب أوّل ما يدخل
+    bot.chat('/register 123456789yyyuuu 123456789yyyuuu');
+
+    // يمشي للأمام باستمرار
+    bot.setControlState('forward', true);
+  });
+
+  bot.on('message', (message) => {
+    console.log('شات:', message.toAnsi());
   });
 
   bot.on('end', () => {
-    console.log(`❌ البوت ${username} فصل... إعادة الاتصال بعد 5 ثواني`);
-    setTimeout(() => startBot(), 5000);
+    console.log('تم فصل البوت... إعادة الاتصال بعد 5 ثواني');
+    setTimeout(startBot, 5000);
   });
 
   bot.on('error', err => {
-    console.log(`⚠️ خطأ في ${username}:`, err.message);
-    setTimeout(() => startBot(), 5000);
+    console.log('خطأ:', err.message);
+    setTimeout(startBot, 5000);
+  });
+
+  process.on('SIGINT', () => {
+    console.log('إيقاف البوت...');
+    bot.quit();
+    process.exit();
   });
 }
+
+startBot();
