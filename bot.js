@@ -33,6 +33,3 @@ function startBot() {
     setTimeout(() => startBot(), 5000);
   });
 }
-
-// كل 5 ثواني يتولد بوت جديد
-setInterval(startBot, 5000);
