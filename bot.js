@@ -1,13 +1,13 @@
 const mineflayer = require('mineflayer');
 
-let botCount = 0;
+let botCount = 1;
 
 function startBot() {
   botCount++;
   const username = `ommm${botCount}`; // اسم مختلف لكل بوت
 
   const bot = mineflayer.createBot({
-    host: '51.38.155.225:25329', // السيرفر
+    host: 'pvptrainlol.falixsrv.me', // السيرفر
     username: username,
     auth: 'offline',                // للسيرفرات الـ cracked
     version: '1.20.1'               // أو false لو عايز يتعرف تلقائيًا
