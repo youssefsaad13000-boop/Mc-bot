@@ -3,18 +3,19 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'pvptrainlol.falixsrv.me',
-    username: 'ShadowBot',   // اسم ثابت اخترته
-    auth: 'offline',         // للسيرفرات الـ cracked
-    version: '1.20.1'        // زي ما كانت
+    username: 'ShadowBot',   // اسم ثابت
+    auth: 'offline',
+    version: '1.20.1'
   });
 
   bot.on('spawn', () => {
     console.log('✅ ShadowBot متصل');
-    // مفيش حركة أو مشي
+    // مفيش حركة أو شات
   });
 
+  // تجاهل أي رسائل في الشات
   bot.on('message', (message) => {
-    console.log('💬 شات:', message.toAnsi());
+    // مش هيعمل أي رد أو خروج
   });
 
   bot.on('end', () => {
