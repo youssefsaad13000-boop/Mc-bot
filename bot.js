@@ -2,15 +2,15 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'pvptrainlol.falixsrv.me', // عنوان السيرفر
-    username: 'StormBreaker',        // الاسم الجديد للبوت
+    host: 'pvptrainlol.falixsrv.me',
+    username: 'StormBreaker',   // اسم جديد للبوت
     auth: 'offline',
-    version: '1.20.1'                // زي ما كان قبل كده
+    version: '1.20.1'           // زي ما كان
   });
 
   bot.on('spawn', () => {
     console.log('✅ StormBreaker متصل');
-    // مفيش حركة غير طبيعية علشان ما يتطردش
+    // مفيش حركة علشان ما يتطردش
   });
 
   bot.on('end', () => {
@@ -21,12 +21,6 @@ function startBot() {
   bot.on('error', err => {
     console.log('⚠️ خطأ:', err.message);
     setTimeout(startBot, 10000);
-  });
-
-  process.on('SIGINT', () => {
-    console.log('⏹️ إيقاف StormBreaker...');
-    bot.quit();
-    process.exit();
   });
 }
 
