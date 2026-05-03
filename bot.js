@@ -3,7 +3,7 @@ const mineflayer = require('mineflayer');
 function startBot() {
   const bot = mineflayer.createBot({
     host: 'pvptrainlol.falixsrv.me',
-    username: 'IronGuard',   // اسم ثابت جديد
+    username: 'IronGard',   // اسم ثابت
     auth: 'offline',
     version: '1.20.1'
   });
@@ -11,11 +11,11 @@ function startBot() {
   bot.on('spawn', () => {
     console.log('✅ IronGuard متصل');
 
-    // قفزة كل 10 ثواني بدل النط المستمر
+    // قفزة كل 30 ثانية بشكل طبيعي
     setInterval(() => {
       bot.setControlState('jump', true);
       setTimeout(() => bot.setControlState('jump', false), 300);
-    }, 10000);
+    }, 30000);
   });
 
   bot.on('end', () => {
