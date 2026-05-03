@@ -2,36 +2,25 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'pvptrainlol.falixsrv.me',
-    username: 'IronGard',   // اسم ثابت
+    host: 'pvptrainlol.falixsrv.me', // هنا غيّر للـ IP أو الدومين الجديد
+    port: 25565,                     // البورت الافتراضي، غيّره لو السيرفر مختلف
+    username: 'SkyRunner',
     auth: 'offline',
-    version: '1.20.1'
+    version: false
   });
 
   bot.on('spawn', () => {
-    console.log('✅ IronGuard متصل');
-
-    // قفزة كل 30 ثانية بشكل طبيعي
-    setInterval(() => {
-      bot.setControlState('jump', true);
-      setTimeout(() => bot.setControlState('jump', false), 300);
-    }, 30000);
+    console.log('✅ SkyRunner متصل');
   });
 
   bot.on('end', () => {
-    console.log('❌ تم فصل IronGuard... إعادة الاتصال بعد 10 ثواني');
+    console.log('❌ تم فصل SkyRunner... إعادة الاتصال بعد 10 ثواني');
     setTimeout(startBot, 10000);
   });
 
   bot.on('error', err => {
     console.log('⚠️ خطأ:', err.message);
     setTimeout(startBot, 10000);
-  });
-
-  process.on('SIGINT', () => {
-    console.log('⏹️ إيقاف IronGuard...');
-    bot.quit();
-    process.exit();
   });
 }
 
