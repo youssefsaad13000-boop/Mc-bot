@@ -11,11 +11,11 @@ function startBot() {
   bot.on('spawn', () => {
     console.log('✅ IronGuard متصل');
 
-    // نط دائم (قفزة كل ثانية)
+    // قفزة كل 10 ثواني بدل النط المستمر
     setInterval(() => {
       bot.setControlState('jump', true);
       setTimeout(() => bot.setControlState('jump', false), 300);
-    }, 1000);
+    }, 10000);
   });
 
   bot.on('end', () => {
