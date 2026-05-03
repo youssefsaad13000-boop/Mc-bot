@@ -2,25 +2,31 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'pvptrainlol.falixsrv.me', // هنا غيّر للـ IP أو الدومين الجديد
-    port: 25565,                     // البورت الافتراضي، غيّره لو السيرفر مختلف
-    username: 'SkyRunner',
+    host: 'pvptrainlol.falixsrv.me', // عنوان السيرفر
+    username: 'StormBreaker',        // الاسم الجديد للبوت
     auth: 'offline',
-    version: false
+    version: '1.20.1'                // زي ما كان قبل كده
   });
 
   bot.on('spawn', () => {
-    console.log('✅ SkyRunner متصل');
+    console.log('✅ StormBreaker متصل');
+    // مفيش حركة غير طبيعية علشان ما يتطردش
   });
 
   bot.on('end', () => {
-    console.log('❌ تم فصل SkyRunner... إعادة الاتصال بعد 10 ثواني');
+    console.log('❌ تم فصل StormBreaker... إعادة الاتصال بعد 10 ثواني');
     setTimeout(startBot, 10000);
   });
 
   bot.on('error', err => {
     console.log('⚠️ خطأ:', err.message);
     setTimeout(startBot, 10000);
+  });
+
+  process.on('SIGINT', () => {
+    console.log('⏹️ إيقاف StormBreaker...');
+    bot.quit();
+    process.exit();
   });
 }
 
