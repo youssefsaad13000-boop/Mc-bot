@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer');
 
 function startBot() {
   const bot = mineflayer.createBot({
-    host: 'pvptrainlol.falixsrv.me',
-    username: 'StormBreaker',   // اسم جديد للبوت
+    host: 'enderglider.falixsrv.me',
+    username: 'hoss_2013gg',   // اسم جديد للبوت
     auth: 'offline',
     version: '1.20.1'           // زي ما كان
   });
